@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: back_production
-  username: back
-  password: <%= ENV['BACK_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
