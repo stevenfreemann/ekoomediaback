@@ -1,0 +1,19 @@
+class UsersController < ApplicationController
+
+  # method create User with strong params
+  def create
+    user = User.new(user_params)
+    user.nickname = params[:email].split("@")[0] if params[:email]
+    if user.save!
+      render json: user, :status => 201
+    end
+  rescue => e
+    render json: {error: e} , :status => 500
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:name, :email, :phone, :age)
+  end
+
+end
