@@ -81,4 +81,5 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  database: back_prod
+  uri: ENV['DATABASE_URL']
