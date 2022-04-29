@@ -9,6 +9,8 @@ class UsersController < ApplicationController
     end
   rescue ActiveRecord::RecordNotUnique
     render json: {error: "Nickname ya existe"} , :status => 200
+  rescue ActiveRecord::RecordInvalid => e
+    render json: {error: "La edad debe estar entre 18 y 100"} , :status => 200
   rescue => e
     render json: {error: e} , :status => 500
   end
