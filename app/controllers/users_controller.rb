@@ -7,6 +7,8 @@ class UsersController < ApplicationController
     if user.save!
       render json: user, :status => 201
     end
+  rescue ActiveRecord::RecordNotUnique
+    render json: {error: "Nickname ya existe"} , :status => 200
   rescue => e
     render json: {error: e} , :status => 500
   end
